@@ -4,9 +4,24 @@ html(lang="fr")
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    meta(name="description" content="Ici, créez des taches !")
+    link(rel="stylesheet" href="/style.css")
   body
     include ../partials/header.pug
     h1 Nom de l'évenement: #{name}
     h2 Auteur de l'évenement: #{author}
     label(for="url") Partagez l'événement
     input(id="url" value=`${url}`)
+    h2 Ajouter un item à l'évenement
+    form(method="post" action=`/party/${id}/items`)
+      label(for="item") Nom de l'item
+      input(type="text" name="name" id="item" required minlength="3")
+      label(for="author") Nom de l'auteur
+      input(type="text" name="user" id="author" required minlength="3")
+      button(type="submit") Ajouter
+    ul
+      each item in items
+        li= item.name
+        form(method="post" action=`/party/${id}/items/${item._id}`)
+          input(type="hidden")
+          button(type="submit") Supprimer
