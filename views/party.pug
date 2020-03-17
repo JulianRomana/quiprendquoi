@@ -1,0 +1,12 @@
+html(lang="fr")
+  head
+    title= title
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+  body
+    include ../partials/header.pug
+    h1 Nom de l'évenement: #{name}
+    h2 Auteur de l'évenement: #{author}
+    label(for="url") Partagez l'événement
+    input(id="url" value=`${url}`)
