@@ -6,16 +6,19 @@ html(lang="fr")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     meta(name="description" content="Ici, créez des taches !")
     link(rel="stylesheet" href="/style.css")
+    script(src="/script.js" async)
   body
-    include ../partials/header.pug
-    h1 Bienvenue sur - #{title}
-    h2 créer un évenement
-    form(method="post" action="/party")
-      div
-        label(for="name") Nom de l'événement
-        input(name="name" id="name" required minlength="3" placeholder="Bar Mitzvah")
-        label(for="author") Nom de l'auteur
-        input(type="text" name="author" id="author" required minlength="2" placeholder="Tupac Amaru Shakur")
-        label(for="date") Date
-        input(type="date" name="date" id="date")
-      button(type="submit") Créer
+    section.wrapper
+      main
+        include ../partials/header.pug
+        h1.partyTitle #{title}
+        h2.partySubtitle Créer un évenement
+        form(method="post" action="/party").newParty
+          div.newParty__fields
+            label(for="name") Nom de l'événement
+            input(name="name" id="name" required minlength="3" placeholder="Bar Mitzvah")
+            label(for="author") Nom de l'auteur
+            input(type="text" name="author" id="author" required minlength="2" placeholder="Tupac Amaru Shakur")
+            label(for="date") Date
+            input(type="date" name="date" id="date")
+          button(type="submit") Créer

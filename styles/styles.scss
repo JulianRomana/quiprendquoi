@@ -1,5 +1,10 @@
-@import './reset.scss';
+@import './vendors/reset.scss';
 
-body {
-  font-family: sans-serif;
-}
+@import './config/mediaQueries.scss';
+@import './config/variables.scss';
+@import './config/base.scss';
+
+@import './pages/landing.scss';
+
+@import './blocs/newParty.scss';
+@import './blocs/party.scss';

@@ -1,0 +1,16 @@
+.partyTitle,
+.partySubtitle {
+  text-align: center;
+}
+
+.partyTitle {
+  margin-bottom: 3rem;
+
+  @include medium {
+    margin-bottom: 4.2rem;
+  }
+}
+
+.partySubtitle {
+  margin-bottom: 1.6rem;
+}

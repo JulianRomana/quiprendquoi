@@ -6,22 +6,33 @@ html(lang="fr")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     meta(name="description" content="Ici, créez des taches !")
     link(rel="stylesheet" href="/style.css")
+    script(src="/script.js" async)
   body
-    include ../partials/header.pug
-    h1 Nom de l'évenement: #{name}
-    h2 Auteur de l'évenement: #{author}
-    label(for="url") Partagez l'événement
-    input(id="url" value=`${url}`)
-    h2 Ajouter un item à l'évenement
-    form(method="post" action=`/party/${id}/items`)
-      label(for="item") Nom de l'item
-      input(type="text" name="name" id="item" required minlength="3")
-      label(for="author") Nom de l'auteur
-      input(type="text" name="user" id="author" required minlength="3")
-      button(type="submit") Ajouter
-    ul
-      each item in items
-        li= item.name
-        form(method="post" action=`/party/${id}/items/${item._id}`)
-          input(type="hidden")
-          button(type="submit") Supprimer
+    section.wrapper
+      main.party
+        include ../partials/header.pug
+        h1.party__name Nom de l'évenement: #{name}
+        h2.party__author Auteur de l'évenement: #{author}
+        div.party__url
+          label(for="url") Partagez l'événement
+          input(id="url"
+            type="text" value=`${url}`
+            data-clipboard=`${url}`
+            data-share-url=`${url}`
+            data-share-title="shareUrl"
+            data-share-text=`${name} vous invite à ${event}`
+          )
+        h2.items__title Ajouter un item à l'évenement
+        form(method="post" action=`/party/${id}/items`).items__form
+          div.items__fields
+            label(for="item") Nom de l'item
+            input(type="text" name="name" id="item" required minlength="3")
+            label(for="author") Nom de l'auteur
+            input(type="text" name="user" id="author" required minlength="3")
+          button(type="submit") Ajouter
+        ul.items__list
+          each item in items
+            li.items__list__item= item.name
+            form(method="post" action=`/party/${id}/items/${item._id}`)
+              input(type="hidden")
+              button(type="submit") Supprimer

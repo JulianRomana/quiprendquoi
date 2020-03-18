@@ -1,0 +1,55 @@
+body {
+  font-family: sans-serif;
+  background-color: $primary;
+}
+
+h1,
+h2,
+h3,
+label {
+  color: $white;
+}
+
+h1 {
+  font-size: 2.4rem;
+
+  @include medium {
+    font-size: 3.6rem;
+  }
+}
+
+h2 {
+  font-size: 2rem;
+
+  @include medium {
+    font-size: 2.4rem;
+  }
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  padding: 1rem;
+
+  @include medium {
+    padding: 1.6rem;
+  }
+}
+
+input {
+  border: 1px solid $primary-lighter;
+  color: $primary;
+  background-color: $white;
+}
+
+button {
+  background-color: $white;
+  border: none;
+  color: $primary;
+  padding: .8rem 1.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
