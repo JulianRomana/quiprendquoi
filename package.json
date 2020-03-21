@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "sass": "node-sass styles/styles.scss public/style.css -w --output-style compressed",
     "watchify": "watchify scripts/*.js -o public/script.js -t [ babelify --presets [ @babel/preset-env babel-preset-minify ] ]",
-    "sw": "watchify sw.js -o public/sw.js -t [ babelify --presets [ babel-preset-minify ] ]"
+    "sw": "watchify sw.js -o public/sw.js -t [ babelify --presets [ babel-preset-minify ] ]",
+    "build":"npm run start"
   },
   "keywords": [],
   "author": "",
