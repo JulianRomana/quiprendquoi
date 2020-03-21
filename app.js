@@ -7,7 +7,8 @@ const axios = require('axios')
 app.listen(process.env.PORT, () => console.log(`Front app listening on port ${process.env.PORT}!`))
 app.set('view engine', 'pug')
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(express.static('public'));
+app.use(express.static('public'))
+app.use(express.static('pwa'))
 
 app.get('/', (req, res) => {
   res.render('index', {

@@ -1,0 +1,9 @@
+{
+  "name": "qui veut quoi",
+  "short_name": "qvq",
+  "theme_color": "#8370ff",
+  "background_color": "#8370ff",
+  "display": "minimal-ui",
+  "scope": "/",
+  "start_url": "/"
+}

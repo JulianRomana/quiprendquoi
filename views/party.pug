@@ -1,38 +1,35 @@
-html(lang="fr")
-  head
-    title= title
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    meta(http-equiv="X-UA-Compatible", content="ie=edge")
-    meta(name="description" content="Ici, créez des taches !")
-    link(rel="stylesheet" href="/style.css")
-    script(src="/script.js" async)
-  body
-    section.wrapper
-      main.party
-        include ../partials/header.pug
-        h1.party__name Nom de l'évenement: #{name}
-        h2.party__author Auteur de l'évenement: #{author}
-        div.party__url
-          label(for="url") Partagez l'événement
-          input(id="url"
-            type="text" value=`${url}`
-            data-clipboard=`${url}`
-            data-share-url=`${url}`
-            data-share-title="shareUrl"
-            data-share-text=`${name} vous invite à ${event}`
-          )
-        h2.items__title Ajouter un item à l'évenement
-        form(method="post" action=`/party/${id}/items`).items__form
-          div.items__fields
-            label(for="item") Nom de l'item
-            input(type="text" name="name" id="item" required minlength="3")
-            label(for="author") Nom de l'auteur
-            input(type="text" name="user" id="author" required minlength="3")
-          button(type="submit") Ajouter
-        ul.items__list
-          each item in items
+include ../partials/header.pug
+section.wrapper
+  main.party
+    h1.party__name Nom de l'évenement: #{name}
+    h2.party__author Auteur de l'évenement: #{author}
+    div.party__url
+      label(for="url") Partagez l'événement
+      input(id="url"
+        type="text" value=`${url}`
+        data-clipboard=`${url}`
+        data-share-url=`${url}`
+        data-share-title="shareUrl"
+        data-share-text=`${name} vous invite à ${event}`
+      )
+    h2.items__title Ajouter un item à l'évenement
+    form(method="post" action=`/party/${id}/items`).items__form
+      div.items__fields
+        label(for="item") Nom de l'item
+        input(type="text" name="name" id="item" required minlength="3")
+        label(for="author") Nom de l'auteur
+        input(type="text" name="user" id="author" required minlength="3")
+      button(type="submit") Ajouter
+    h2.items__list__title Liste des items
+    ul.items__list
+      if items.length
+        each item in items
+          div.item__list__wrapper
             li.items__list__item= item.name
-            form(method="post" action=`/party/${id}/items/${item._id}`)
+            form(method="post" action=`/party/${id}/items/${item._id}`).items__delete__button
               input(type="hidden")
               button(type="submit") Supprimer
+      else 
+        p.items__list__message Ajoutez un item !
+  script.
+    party = !{JSON.stringify(party)}

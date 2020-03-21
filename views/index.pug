@@ -1,24 +1,22 @@
-html(lang="fr")
-  head
-    title= title
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    meta(http-equiv="X-UA-Compatible", content="ie=edge")
-    meta(name="description" content="Ici, créez des taches !")
-    link(rel="stylesheet" href="/style.css")
-    script(src="/script.js" async)
-  body
-    section.wrapper
-      main
-        include ../partials/header.pug
-        h1.partyTitle #{title}
-        h2.partySubtitle Créer un évenement
-        form(method="post" action="/party").newParty
-          div.newParty__fields
-            label(for="name") Nom de l'événement
-            input(name="name" id="name" required minlength="3" placeholder="Bar Mitzvah")
-            label(for="author") Nom de l'auteur
-            input(type="text" name="author" id="author" required minlength="2" placeholder="Tupac Amaru Shakur")
-            label(for="date") Date
-            input(type="date" name="date" id="date")
-          button(type="submit") Créer
+include ../partials/header.pug
+section.wrapper
+  main
+    h1.partyTitle #{title}
+    h2.partySubtitle Créer un évenement
+    form(method="post" action="/party").newParty
+      div.newParty__fields
+        label(for="name") Nom de l'événement
+        input(name="name" id="name" required minlength="3" placeholder="Bar Mitzvah")
+        label(for="author") Nom de l'auteur
+        input(type="text" name="author" id="author" required minlength="2" placeholder="Tupac Amaru Shakur")
+        label(for="date") Date
+        input(type="date" name="date" id="date")
+      button(type="submit") Créer
+script.
+  if (navigator.serviceWorker) {
+    navigator.serviceWorker.register("/sw.js")
+      .then(() => console.log('Service worker is registered'))
+      .catch(err => console.warn(err));
+  } else {
+    console.log('Nothing to see here...');
+  }
