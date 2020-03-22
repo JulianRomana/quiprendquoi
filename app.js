@@ -8,6 +8,7 @@ app.listen(process.env.PORT, () => console.log(`Front app listening on port ${pr
 app.set('view engine', 'pug')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'))
+app.use(express.static('assets'))
 app.use(express.static('pwa'))
 
 app.get('/', (req, res) => {
@@ -47,6 +48,7 @@ app.post('/party', async (req, res) => {
 
 app.post('/party/:id/items', async (req, res) => {
   const { id } = req.params
+  
   try {
     await axios.post(`${process.env.API_URL}/party/${id}/items`, req.body)
     res.redirect(`/party/${id}`)
